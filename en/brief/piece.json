@@ -1,0 +1,27 @@
+{
+  "id": "2026-12-lets-celebrate",
+  "batch": "2026-12",
+  "channel": "channel-name",
+  "title": "Let's Celebrate There Is a God",
+  "emotion": "joy",
+  "source": {
+    "audio": "batches/2026-12/source/Let's Celebrate There Is a God.wav",
+    "text": "batches/2026-12/source/Let's Celebrate There Is a God - lyrics.txt",
+    "background": "batches/2026-12/source/Let's Celebrate There Is a God - background.png"
+  },
+  "quotes": [
+    "Let's celebrate there is a God",
+    "His love lifts us up again"
+  ],
+  "short_form": {
+    "start_s": 62.0,
+    "end_s": 81.5,
+    "note": "full chorus"
+  },
+  "thumbnail": {
+    "text": "Celebrate",
+    "subtext": "Worship to start the day"
+  },
+  "formats": ["main", "reel", "quote-1", "quote-2", "thumbnail"],
+  "notes": ""
+}

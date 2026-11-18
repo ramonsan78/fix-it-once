@@ -1,0 +1,68 @@
+# Style bible: measurable rules
+# This is the only thing production reads. Every rule must be measurable or copyable as is.
+# Test of a good rule: if two people apply it and get the same result, it's ready.
+# Sample values come from a music channel with painterly illustrations.
+
+style: "warm painterly"
+version: "1.0"
+date: "2026-12-01"
+
+palette:
+  # Hex for each color and its role. The color check measures against these values.
+  light: "#D9A55B"
+  vegetation: "#6B7A3A"
+  shadow: "#4A5568"
+  sky: "#2B3550"
+  deltaE_tolerance: 2       # max accepted difference (CIEDE2000). Under 1 is invisible; 3 or more shows.
+
+composition:
+  aspect: "16:9"
+  text_zone:
+    position: "lower third"
+    height_percent: 30      # share of the height reserved for lyrics or text
+    contrast: "low"         # no busy texture behind the text
+  characters:
+    max_face_percent: 10    # no face takes more than this share of the frame
+    orientation: "from behind or in profile"
+  watermark:
+    position: "top right"
+
+typography:
+  # Templates only. Image generators never write text.
+  title: "Montserrat SemiBold"
+  body: "Montserrat Regular"
+
+base_prompt: >-
+  loose oil painting, warm golden side light, small figures seen from behind,
+  clean dark lower third
+
+negative_prompt: >-
+  text, letters, watermark, close-up hands, close-up faces,
+  neon, 3D render
+
+by_emotion:
+  # Closed table. If a piece fits none, the agent flags it for review.
+  joy: "morning, warm colors, open sky"
+  prayer: "dawn, stillness, raking light"
+  grief: "overcast afternoon, low saturation"
+  hope: "first ray of sun through clouds"
+  christmas: "blue night, warm lanterns, distant manger"
+
+motion:
+  # For animated backgrounds. Optional.
+  camera_always_moving: true
+  speed: "constant, no easing at the loop point"
+  by_composition:
+    people_in_a_circle: "360-degree orbit"
+    landscape_with_focal_point: "slow push toward the point"
+    path_or_river: "lateral move with parallax"
+
+filter:
+  variants_per_piece: 8
+  finalists_to_owner: 3
+
+blacklist:
+  - "text inside the image"
+  - "close-up hands"
+  - "people or objects not in the reference"
+  - "glossy 3D or neon look"

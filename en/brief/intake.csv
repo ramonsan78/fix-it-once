@@ -1,0 +1,2 @@
+id,batch,channel,title,emotion,audio,text,background,quote_1,quote_2,short_start_s,short_end_s,thumbnail_text,thumbnail_subtext,notes
+2026-12-lets-celebrate,2026-12,channel-name,Let's Celebrate There Is a God,joy,batches/2026-12/source/Let's Celebrate There Is a God.wav,batches/2026-12/source/Let's Celebrate There Is a God - lyrics.txt,batches/2026-12/source/Let's Celebrate There Is a God - background.png,Let's celebrate there is a God,His love lifts us up again,62.0,81.5,Celebrate,Worship to start the day,

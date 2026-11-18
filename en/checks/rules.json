@@ -1,0 +1,15 @@
+{
+  "file_name": {
+    "description": "Title, dash and optional format. Example: 'Let's Celebrate There Is a God - Reel.mp4'",
+    "pattern": "^[A-Z0-9][^/\\\\]*?( - (Reel|Quote - 0[12]|Canva))?\\.(mp4|mov)$"
+  },
+  "formats": {
+    "main": {"suffix": "", "width": 2560, "height": 1440, "max_duration_s": null, "audio": true},
+    "reel": {"suffix": " - Reel", "width": 1080, "height": 1920, "max_duration_s": 20, "audio": true},
+    "quote-1": {"suffix": " - Quote - 01", "width": 1080, "height": 1920, "max_duration_s": 30, "audio": true},
+    "quote-2": {"suffix": " - Quote - 02", "width": 1080, "height": 1920, "max_duration_s": 30, "audio": true},
+    "canva": {"suffix": " - Canva", "width": 1080, "height": 1920, "exact_duration_s": 7.2, "audio": false}
+  },
+  "fps": 30,
+  "duration_tolerance_s": 0.1
+}

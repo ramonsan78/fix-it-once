@@ -1,0 +1,27 @@
+{
+  "id": "2026-12-celebremos",
+  "lote": "2026-12",
+  "canal": "nombre-del-canal",
+  "titulo": "Celebremos que Hay un Dios",
+  "emocion": "alegria",
+  "origen": {
+    "audio": "lotes/2026-12/origen/Celebremos que Hay un Dios.wav",
+    "texto": "lotes/2026-12/origen/Celebremos que Hay un Dios - letra.txt",
+    "fondo": "lotes/2026-12/origen/Celebremos que Hay un Dios - fondo.png"
+  },
+  "citas": [
+    "Celebremos que hay un Dios",
+    "Su amor nos levanta otra vez"
+  ],
+  "formato_corto": {
+    "inicio_s": 62.0,
+    "fin_s": 81.5,
+    "nota": "estribillo completo"
+  },
+  "miniatura": {
+    "texto": "Celebremos",
+    "subtexto": "Alabanza para empezar el día"
+  },
+  "formatos": ["principal", "reel", "cita-1", "cita-2", "miniatura"],
+  "notas": ""
+}

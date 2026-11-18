@@ -1,0 +1,68 @@
+# Biblia de estilo: reglas medibles
+# Es lo único que lee la producción. Cada regla debe poder medirse o copiarse tal cual.
+# Prueba de una buena regla: si dos personas la aplican y les da lo mismo, está lista.
+# Los valores de ejemplo son de un canal de música con ilustraciones de estilo pictórico.
+
+estilo: "pictórico cálido"
+version: "1.0"
+fecha: "2026-12-01"
+
+paleta:
+  # Hex de cada color con su función. El chequeo de color mide contra estos valores.
+  luz: "#D9A55B"
+  vegetacion: "#6B7A3A"
+  sombra: "#4A5568"
+  cielo: "#2B3550"
+  tolerancia_deltaE: 2      # diferencia máxima aceptada (CIEDE2000). Menos de 1 no se percibe; 3 o más se nota.
+
+composicion:
+  formato: "16:9"
+  zona_texto:
+    posicion: "tercio inferior"
+    alto_porcentaje: 30     # porcentaje del alto reservado para la letra o el texto
+    contraste: "bajo"       # sin textura cargada detrás del texto
+  personajes:
+    escala_maxima_cara_porcentaje: 10   # ninguna cara ocupa más de este porcentaje del cuadro
+    orientacion: "de espalda o de perfil"
+  marca_de_agua:
+    posicion: "arriba a la derecha"
+
+tipografia:
+  # Solo para plantillas. Los generadores de imagen nunca escriben texto.
+  titulo: "Montserrat SemiBold"
+  cuerpo: "Montserrat Regular"
+
+prompt_base: >-
+  óleo suelto, luz dorada lateral, figuras pequeñas de espalda,
+  tercio inferior limpio y oscuro
+
+prompt_negativo: >-
+  text, letters, watermark, close-up hands, close-up faces,
+  neon, 3D render
+
+por_emocion:
+  # Tabla cerrada. Si una pieza no encaja en ninguna, el agente la marca para revisión.
+  alegria: "mañana, colores cálidos, cielo abierto"
+  oracion: "amanecer, quietud, luz rasante"
+  dolor: "tarde nublada, saturación baja"
+  esperanza: "primer rayo de sol entre nubes"
+  navidad: "noche azul, faroles cálidos, pesebre a lo lejos"
+
+movimiento:
+  # Para fondos animados. Opcional.
+  camara_siempre_en_movimiento: true
+  velocidad: "constante, sin aceleración en el punto de loop"
+  por_composicion:
+    personas_en_circulo: "órbita de 360 grados"
+    paisaje_con_punto_focal: "acercamiento lento hacia el punto"
+    camino_o_rio: "desplazamiento lateral con parallax"
+
+filtro:
+  variantes_por_pieza: 8
+  finalistas_al_responsable: 3
+
+lista_negra:
+  - "texto dentro de la imagen"
+  - "manos en primer plano"
+  - "personas u objetos que no están en la referencia"
+  - "estética 3D brillante o neón"

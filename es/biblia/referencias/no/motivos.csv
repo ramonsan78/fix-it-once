@@ -1,0 +1,5 @@
+archivo,motivo,categoria,fecha,regla_relacionada
+no_cara-primer-plano_1102.png,cara deformada en primer plano,defecto,2026-11-02,personajes
+no_letra-ilegible_1104.png,vegetación densa detrás de la letra,defecto,2026-11-04,composicion.zona_texto
+no_cielo-frio_1106.png,cielo demasiado azul para una canción alegre,preferencia,2026-11-06,por_emocion.alegria
+no_angulo_1108.png,no me gusta el ángulo,capricho,2026-11-08,

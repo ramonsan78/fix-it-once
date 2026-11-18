@@ -1,0 +1,5 @@
+file,reason,category,date,related_rule
+no_close-up-face_1102.png,deformed face in close-up,defect,2026-11-02,characters
+no_unreadable-lyrics_1104.png,dense vegetation behind the lyrics,defect,2026-11-04,composition.text_zone
+no_cold-sky_1106.png,sky too blue for a joyful song,preference,2026-11-06,by_emotion.joy
+no_angle_1108.png,I don't like the angle,whim,2026-11-08,
