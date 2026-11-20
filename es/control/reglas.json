@@ -1,14 +1,15 @@
 {
   "nombre_archivo": {
-    "descripcion": "Título, guion y formato opcional. Ejemplo: 'Celebremos que Hay un Dios - Reel.mp4'",
-    "patron": "^[A-ZÁÉÍÓÚÑ0-9][^/\\\\]*?( - (Reel|Quote - 0[12]|Canva))?\\.(mp4|mov)$"
+    "descripcion": "Título, guion y formato opcional. Ejemplo: 'Luz de la Mañana - Reel.mp4'",
+    "patron": "^[A-ZÁÉÍÓÚÑ0-9][^/\\\\]*?( - (Reel|Quote - 0[12]|Canva|Miniatura))?\\.(mp4|mov|jpg|jpeg|png)$"
   },
   "formatos": {
     "principal": {"sufijo": "", "ancho": 2560, "alto": 1440, "duracion_max_s": null, "audio": true},
     "reel": {"sufijo": " - Reel", "ancho": 1080, "alto": 1920, "duracion_max_s": 20, "audio": true},
     "cita-1": {"sufijo": " - Quote - 01", "ancho": 1080, "alto": 1920, "duracion_max_s": 30, "audio": true},
     "cita-2": {"sufijo": " - Quote - 02", "ancho": 1080, "alto": 1920, "duracion_max_s": 30, "audio": true},
-    "canva": {"sufijo": " - Canva", "ancho": 1080, "alto": 1920, "duracion_exacta_s": 7.2, "audio": false}
+    "canva": {"sufijo": " - Canva", "ancho": 1080, "alto": 1920, "duracion_exacta_s": 7.2, "audio": false},
+    "miniatura": {"tipo": "imagen", "sufijo": " - Miniatura", "ancho": 1920, "alto": 1080}
   },
   "fps": 30,
   "tolerancia_duracion_s": 0.1

@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Measurable checks for a batch of videos.
+"""Measurable checks for a batch of videos and thumbnails.
 
-Checks every video in a folder against checks/rules.json:
-name, resolution, fps, duration and audio presence.
+Checks every video and image in a folder against checks/rules.json:
+name, resolution, fps, duration and audio presence for videos; name and resolution for images.
 It has no opinion on aesthetics: that's the judge's and the owner's job.
 
 Usage:
     python3 checks/checks.py batches/2026-12/output
     python3 checks/checks.py batches/2026-12/output --rules checks/rules.json --json report.json
 
-Exits 0 if everything passes and 1 if any video fails.
+Exits 0 if everything passes and 1 if any file fails.
 Requires ffprobe (ships with FFmpeg).
 """
 
@@ -21,7 +21,9 @@ import subprocess
 import sys
 from pathlib import Path
 
-EXTENSIONS = {".mp4", ".mov"}
+VIDEO_EXTENSIONS = {".mp4", ".mov"}
+IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
+EXTENSIONS = VIDEO_EXTENSIONS | IMAGE_EXTENSIONS
 
 
 def load_rules(path):
@@ -53,8 +55,11 @@ def probe(video):
 
 
 def detect_format(name, formats):
-    """Pick the format whose suffix matches the name; the longest suffix wins."""
+    """Pick the format whose suffix matches the name; the longest suffix wins.
+    Images only match formats with "type": "image", and videos only the rest."""
     stem = Path(name).stem
+    is_image = Path(name).suffix.lower() in IMAGE_EXTENSIONS
+    formats = {k: f for k, f in formats.items() if (f.get("type") == "image") == is_image}
     candidates = []
     for key, f in formats.items():
         suffix = f.get("suffix", "")
@@ -86,8 +91,13 @@ def check(video, rules):
     if (info["width"], info["height"]) != (fmt["width"], fmt["height"]):
         errors.append(f"resolution {info['width']}x{info['height']}, expected {fmt['width']}x{fmt['height']}")
 
+    if fmt.get("type") == "image":
+        return {"file": name, "format": key, "width": info["width"], "height": info["height"], "errors": errors}
+
     expected_fps = rules.get("fps")
-    if expected_fps and info["fps"] and abs(info["fps"] - expected_fps) > 0.01:
+    if expected_fps and not info["fps"]:
+        errors.append("fps could not be read, so it was not checked")
+    elif expected_fps and abs(info["fps"] - expected_fps) > 0.01:
         errors.append(f"fps {info['fps']}, expected {expected_fps}")
 
     tol = rules.get("duration_tolerance_s", 0.1)
@@ -106,8 +116,8 @@ def check(video, rules):
 
 def main():
     root = Path(__file__).resolve().parent
-    p = argparse.ArgumentParser(description="Measurable checks for a batch of videos.")
-    p.add_argument("folder", help="folder with the batch's videos")
+    p = argparse.ArgumentParser(description="Measurable checks for a batch of videos and thumbnails.")
+    p.add_argument("folder", help="folder with the batch's videos and thumbnails")
     p.add_argument("--rules", default=str(root / "rules.json"), help="path to rules.json")
     p.add_argument("--json", help="save the full report to this file")
     args = p.parse_args()
@@ -122,7 +132,7 @@ def main():
     rules = load_rules(args.rules)
     videos = sorted(v for v in folder.rglob("*") if v.suffix.lower() in EXTENSIONS)
     if not videos:
-        sys.exit(f"No videos in {folder}")
+        sys.exit(f"No videos or images in {folder}")
 
     results = [check(v, rules) for v in videos]
     failed = [r for r in results if r["errors"]]
@@ -132,7 +142,7 @@ def main():
         print(f"[{status}] {r['file']} ({r['format'] or 'no format'})")
         for e in r["errors"]:
             print(f"        - {e}")
-    print(f"\n{len(results) - len(failed)} of {len(results)} videos pass the checks.")
+    print(f"\n{len(results) - len(failed)} of {len(results)} files pass the checks.")
 
     if args.json:
         with open(args.json, "w", encoding="utf-8") as f:

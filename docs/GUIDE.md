@@ -8,7 +8,7 @@ Every correction is made once: on the system, not on the piece. If the owner rej
 
 This guide is for creators and small teams who produce a lot in a repeatable format: music and lyric channels, faceless channels, podcasts that cut clips every week, educational series, agencies producing for several clients. It works best when someone is demanding about the result, because their judgment is exactly what the system captures.
 
-The method came out of redesigning the real process of a music channel that publishes about 16 songs a month, each with 5 videos and 3 covers. The examples come from that kind of work, but the method doesn't depend on any particular tool.
+The method came out of redesigning the production process of a high-volume channel that publishes several formats per piece every month. The examples use a music channel because it shows the whole cycle, from the source file to the clips and thumbnails, but the method doesn't depend on any particular format or tool.
 
 ## Why AI alone doesn't reduce revisions
 
@@ -95,19 +95,19 @@ Before the owner sees anything, two filters discard what doesn't work.
 - dominant color against the bible's palette, with a measured tolerance (ΔE of 2 or less);
 - text inside the safe zones.
 
-The kit includes `checks.py`, which checks duration, resolution, fps, audio and names for a folder of videos.
+The kit includes `checks.py`, which checks duration, resolution, fps, audio and names for videos, and name and resolution for thumbnails. The color and safe-zone checks aren't included yet: they're the next ones to add when your rejections show they're needed.
 
 **Layer 2: a visual judge.** A vision model compares each candidate with the approved and rejected references, discards the ones with defects and ranks the rest. Three rules:
 
 1. **The judge discards and ranks; it never approves.** Vision models are good at comparing pairs and bad at absolute scores.
-2. **It learns from the owner's own examples.** Without examples, it tends to pass pieces with defects; with a few hundred reasoned rejections, it catches most of them.
+2. **It learns from the owner's own examples.** Without examples, it tends to pass pieces with defects; the more reasoned rejections it has, the more it catches. Before trusting it, compare its discards with the owner's for two or three batches.
 3. **It's a separate agent from the generator.** An agent reviewing its own work tends to approve it.
 
 The owner gets 2 or 3 finalists per piece, not 20.
 
 ## Step 5: approvals and the rejection log
 
-**Approval points.** Three or four per batch, always the same: the month's list of pieces, the finalists, the final cut and publishing. Anything with a cost is approved first, with the cost shown. Nothing is published without the owner's OK; in Claude Code a hook enforces it by blocking the upload if the batch's approval file doesn't exist.
+**Approval points.** Three or four per batch, always the same: the month's list of pieces, the finalists, the final cut and publishing. Anything with a cost is approved first, with the cost shown. Nothing is published without the owner's OK. In Claude Code a hook backs this up: it blocks uploads, copies to delivery folders and connector actions when the batch's approval file is missing or incomplete, and it stops Claude from writing that file itself. It's a guardrail against mistakes, not a lock: the owner's OK is still the control.
 
 **Every rejection, with its reason.** One sentence is enough: "the lyrics land on the trees and can't be read." The agent logs it in `reasons.csv` and categorizes it:
 

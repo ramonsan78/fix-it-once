@@ -16,16 +16,16 @@ batches/
 
 ## approved.json
 
-Written by the owner (or by Claude, when the owner says so explicitly in chat):
+Written by the owner, by hand. Claude can show the content to paste, but it never creates or edits this file: the hook blocks it.
 
 ```json
 {
   "batch": "2026-12",
   "approved_by": "Name",
   "date": "2026-12-18",
-  "pieces": ["2026-12-lets-celebrate", "2026-12-christmas-at-the-door"],
+  "pieces": ["2026-12-morning-light", "2026-12-long-way-home"],
   "notes": ""
 }
 ```
 
-The hook `checks/block-publishing.py` checks that this file exists before any publishing or delivery of the batch.
+Before any publishing or delivery of the batch, the hook `checks/block-publishing.py` checks that this file exists and is complete: `batch` matches the folder, `approved_by` is filled in, `date` is YYYY-MM-DD and `pieces` lists at least one piece. The hook doesn't check which piece each command delivers: that is still the owner's call.

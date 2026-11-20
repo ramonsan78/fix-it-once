@@ -8,7 +8,8 @@ version: "1.0"
 date: "2026-12-01"
 
 palette:
-  # Hex for each color and its role. The color check measures against these values.
+  # Hex for each color and its role. The judge compares against them. The kit's checks.py
+  # doesn't measure color yet: if you add a color check, measure against these values.
   light: "#D9A55B"
   vegetation: "#6B7A3A"
   shadow: "#4A5568"
@@ -43,10 +44,10 @@ negative_prompt: >-
 by_emotion:
   # Closed table. If a piece fits none, the agent flags it for review.
   joy: "morning, warm colors, open sky"
-  prayer: "dawn, stillness, raking light"
+  calm: "dawn, stillness, raking light"
   grief: "overcast afternoon, low saturation"
   hope: "first ray of sun through clouds"
-  christmas: "blue night, warm lanterns, distant manger"
+  celebration: "blue night, warm string lights, a distant gathering"
 
 motion:
   # For animated backgrounds. Optional.

@@ -8,7 +8,7 @@ This repository produces the channel's content with the "Fix It Once" method. Re
 - Everything visual is generated from `bible/style.yaml`. Never invent style rules: if something is not in the bible, ask.
 - On-screen text (titles, lyrics, quotes, thumbnails) comes from templates, never from an image generator.
 - No paid generation runs without first showing the prompt and the cost and getting a "yes".
-- Nothing is published or delivered without `batches/<YYYY-MM>/approved.json`. The hook in `.claude/settings.json` enforces it.
+- Nothing is published or delivered without `batches/<YYYY-MM>/approved.json`, written by the owner. Never create or edit that file yourself. The hook in `.claude/settings.json` blocks the common ways around this rule, but the rule holds even where the hook can't see.
 - The visual judge (`.claude/agents/judge.md`) discards and ranks; it never approves. The final call belongs to the owner.
 - Every rejection from the owner is logged with `log-rejection` on the spot.
 - The bible changes only once a month, through `propose-rules` and the owner's approval.

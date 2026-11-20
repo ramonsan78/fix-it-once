@@ -8,7 +8,7 @@ Este repositorio produce el contenido del canal con el método "Se corrige una v
 - Todo lo visual se genera desde `biblia/estilo.yaml`. Nunca inventes reglas de estilo: si algo no está en la biblia, pregunta.
 - El texto en pantalla (títulos, letras, citas, miniaturas) sale de las plantillas, nunca de un generador de imágenes.
 - Ninguna generación con costo se lanza sin mostrar antes el prompt y el costo y recibir un "sí".
-- Nada se publica ni se entrega sin `lotes/<AAAA-MM>/aprobado.json`. El hook de `.claude/settings.json` lo hace cumplir.
+- Nada se publica ni se entrega sin `lotes/<AAAA-MM>/aprobado.json`, escrito por el responsable. Nunca crees ni edites ese archivo. El hook de `.claude/settings.json` bloquea los caminos comunes para saltarse esta regla, pero la regla vale también donde el hook no ve.
 - El juez visual (`.claude/agents/juez.md`) descarta y ordena; nunca aprueba. La decisión final es del responsable.
 - Cada rechazo del responsable se registra con `registrar-rechazo` en el momento.
 - La biblia solo cambia una vez al mes, con `proponer-reglas` y la aprobación del responsable.

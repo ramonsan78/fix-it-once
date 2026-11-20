@@ -8,7 +8,8 @@ version: "1.0"
 fecha: "2026-12-01"
 
 paleta:
-  # Hex de cada color con su función. El chequeo de color mide contra estos valores.
+  # Hex de cada color con su función. El juez compara contra ellos. El chequeos.py del kit
+  # todavía no mide color: si agregas un chequeo de color, mide contra estos valores.
   luz: "#D9A55B"
   vegetacion: "#6B7A3A"
   sombra: "#4A5568"
@@ -43,10 +44,10 @@ prompt_negativo: >-
 por_emocion:
   # Tabla cerrada. Si una pieza no encaja en ninguna, el agente la marca para revisión.
   alegria: "mañana, colores cálidos, cielo abierto"
-  oracion: "amanecer, quietud, luz rasante"
+  calma: "amanecer, quietud, luz rasante"
   dolor: "tarde nublada, saturación baja"
   esperanza: "primer rayo de sol entre nubes"
-  navidad: "noche azul, faroles cálidos, pesebre a lo lejos"
+  celebracion: "noche azul, luces cálidas colgadas, una reunión a lo lejos"
 
 movimiento:
   # Para fondos animados. Opcional.

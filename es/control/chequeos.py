@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Chequeos medibles de un lote de videos.
+"""Chequeos medibles de un lote de videos y miniaturas.
 
-Revisa cada video de una carpeta contra control/reglas.json:
-nombre, resolución, fps, duración y presencia de audio.
+Revisa cada video e imagen de una carpeta contra control/reglas.json:
+nombre, resolución, fps, duración y presencia de audio en los videos; nombre y resolución en las imágenes.
 No opina sobre estética: eso es trabajo del juez y del responsable.
 
 Uso:
     python3 control/chequeos.py lotes/2026-12/salida
     python3 control/chequeos.py lotes/2026-12/salida --reglas control/reglas.json --json reporte.json
 
-Sale con código 0 si todo pasa y 1 si algún video falla.
+Sale con código 0 si todo pasa y 1 si algún archivo falla.
 Requiere ffprobe (viene con FFmpeg).
 """
 
@@ -21,7 +21,9 @@ import subprocess
 import sys
 from pathlib import Path
 
-EXTENSIONES = {".mp4", ".mov"}
+EXTENSIONES_VIDEO = {".mp4", ".mov"}
+EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png"}
+EXTENSIONES = EXTENSIONES_VIDEO | EXTENSIONES_IMAGEN
 
 
 def cargar_reglas(ruta):
@@ -53,8 +55,11 @@ def sondear(video):
 
 
 def detectar_formato(nombre, formatos):
-    """Elige el formato cuyo sufijo coincide con el nombre; el sufijo más largo gana."""
+    """Elige el formato cuyo sufijo coincide con el nombre; el sufijo más largo gana.
+    Las imágenes solo coinciden con formatos de "tipo": "imagen", y los videos con el resto."""
     base = Path(nombre).stem
+    es_imagen = Path(nombre).suffix.lower() in EXTENSIONES_IMAGEN
+    formatos = {k: f for k, f in formatos.items() if (f.get("tipo") == "imagen") == es_imagen}
     candidatos = []
     for clave, f in formatos.items():
         sufijo = f.get("sufijo", "")
@@ -86,8 +91,13 @@ def revisar(video, reglas):
     if (info["ancho"], info["alto"]) != (formato["ancho"], formato["alto"]):
         errores.append(f"resolución {info['ancho']}x{info['alto']}, se esperaba {formato['ancho']}x{formato['alto']}")
 
+    if formato.get("tipo") == "imagen":
+        return {"archivo": nombre, "formato": clave, "ancho": info["ancho"], "alto": info["alto"], "errores": errores}
+
     fps_esperado = reglas.get("fps")
-    if fps_esperado and info["fps"] and abs(info["fps"] - fps_esperado) > 0.01:
+    if fps_esperado and not info["fps"]:
+        errores.append("no se pudieron leer los fps, así que no se revisaron")
+    elif fps_esperado and abs(info["fps"] - fps_esperado) > 0.01:
         errores.append(f"fps {info['fps']}, se esperaba {fps_esperado}")
 
     tol = reglas.get("tolerancia_duracion_s", 0.1)
@@ -106,8 +116,8 @@ def revisar(video, reglas):
 
 def main():
     raiz = Path(__file__).resolve().parent
-    p = argparse.ArgumentParser(description="Chequeos medibles de un lote de videos.")
-    p.add_argument("carpeta", help="carpeta con los videos del lote")
+    p = argparse.ArgumentParser(description="Chequeos medibles de un lote de videos y miniaturas.")
+    p.add_argument("carpeta", help="carpeta con los videos y miniaturas del lote")
     p.add_argument("--reglas", default=str(raiz / "reglas.json"), help="ruta a reglas.json")
     p.add_argument("--json", help="guarda el reporte completo en este archivo")
     args = p.parse_args()
@@ -122,7 +132,7 @@ def main():
     reglas = cargar_reglas(args.reglas)
     videos = sorted(v for v in carpeta.rglob("*") if v.suffix.lower() in EXTENSIONES)
     if not videos:
-        sys.exit(f"No hay videos en {carpeta}")
+        sys.exit(f"No hay videos ni imágenes en {carpeta}")
 
     resultados = [revisar(v, reglas) for v in videos]
     fallidos = [r for r in resultados if r["errores"]]
@@ -132,7 +142,7 @@ def main():
         print(f"[{estado}] {r['archivo']} ({r['formato'] or 'sin formato'})")
         for e in r["errores"]:
             print(f"        - {e}")
-    print(f"\n{len(resultados) - len(fallidos)} de {len(resultados)} videos pasan los chequeos.")
+    print(f"\n{len(resultados) - len(fallidos)} de {len(resultados)} archivos pasan los chequeos.")
 
     if args.json:
         with open(args.json, "w", encoding="utf-8") as f:
