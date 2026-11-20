@@ -1,17 +1,17 @@
 {
-  "id": "2026-12-celebremos",
+  "id": "2026-12-luz-de-la-manana",
   "lote": "2026-12",
   "canal": "nombre-del-canal",
-  "titulo": "Celebremos que Hay un Dios",
+  "titulo": "Luz de la Mañana",
   "emocion": "alegria",
   "origen": {
-    "audio": "lotes/2026-12/origen/Celebremos que Hay un Dios.wav",
-    "texto": "lotes/2026-12/origen/Celebremos que Hay un Dios - letra.txt",
-    "fondo": "lotes/2026-12/origen/Celebremos que Hay un Dios - fondo.png"
+    "audio": "lotes/2026-12/origen/Luz de la Mañana.wav",
+    "texto": "lotes/2026-12/origen/Luz de la Mañana - letra.txt",
+    "fondo": "lotes/2026-12/origen/Luz de la Mañana - fondo.png"
   },
   "citas": [
-    "Celebremos que hay un Dios",
-    "Su amor nos levanta otra vez"
+    "Ya viene la luz de la mañana",
+    "Seguimos caminando sin parar"
   ],
   "formato_corto": {
     "inicio_s": 62.0,
@@ -19,8 +19,8 @@
     "nota": "estribillo completo"
   },
   "miniatura": {
-    "texto": "Celebremos",
-    "subtexto": "Alabanza para empezar el día"
+    "texto": "Luz de la Mañana",
+    "subtexto": "Una canción para empezar el día"
   },
   "formatos": ["principal", "reel", "cita-1", "cita-2", "miniatura"],
   "notas": ""

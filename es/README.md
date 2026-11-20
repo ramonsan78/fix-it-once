@@ -23,7 +23,7 @@ se-corrige-una-vez/
 │   └── ficha-de-entrada.csv      la misma ficha en columnas, para Google Sheets
 ├── control/
 │   ├── reglas.json               límites por formato y regla de nombres
-│   ├── chequeos.py               revisa duración, resolución, audio y nombres
+│   ├── chequeos.py               revisa videos y miniaturas: duración, resolución, fps, audio y nombres
 │   ├── bloquear-publicacion.py   hook que impide publicar un lote sin aprobar
 │   └── checklist-revision.md     lo que revisa una persona, y solo eso
 ├── lotes/

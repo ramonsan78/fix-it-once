@@ -23,7 +23,7 @@ en/
 │   └── intake.csv               the same brief as columns, for Google Sheets
 ├── checks/
 │   ├── rules.json               limits per format and naming rule
-│   ├── checks.py                checks duration, resolution, fps, audio and names
+│   ├── checks.py                checks videos and thumbnails: duration, resolution, fps, audio and names
 │   ├── block-publishing.py      hook that blocks publishing an unapproved batch
 │   └── review-checklist.md      what a person reviews, and only that
 ├── batches/

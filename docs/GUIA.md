@@ -8,7 +8,7 @@ Cada corrección se hace una sola vez: sobre el sistema, no sobre la pieza. Si e
 
 Esta guía es para creadores y equipos pequeños que producen mucho y con un formato que se repite: canales de música o de letras, canales sin cara, podcasts que sacan clips cada semana, series educativas, agencias que producen para varios clientes. Funciona mejor cuando hay alguien exigente con el resultado, porque su criterio es justamente lo que el sistema captura.
 
-El método salió de rediseñar el proceso real de un canal de música que publica unas 16 canciones al mes, cada una con 5 videos y 3 portadas. Los ejemplos vienen de ese tipo de trabajo, pero el método no depende de ninguna herramienta en particular.
+El método salió de rediseñar el proceso de producción de un canal de alto volumen que publica varios formatos por pieza cada mes. Los ejemplos usan un canal de música porque muestra el ciclo completo, del archivo de origen a los clips y las miniaturas, pero el método no depende de ningún formato ni herramienta en particular.
 
 ## Por qué la IA sola no reduce las correcciones
 
@@ -95,19 +95,19 @@ Antes de que el responsable vea nada, dos filtros descartan lo que no sirve.
 - color dominante contra la paleta de la biblia, con tolerancia medida (ΔE de 2 o menos);
 - texto dentro de las zonas seguras.
 
-El kit trae `chequeos.py`, que revisa duración, resolución, fps, audio y nombres de una carpeta de videos.
+El kit trae `chequeos.py`, que revisa duración, resolución, fps, audio y nombres en los videos, y nombre y resolución en las miniaturas. Los chequeos de color y de zonas seguras todavía no vienen incluidos: son los siguientes que conviene agregar cuando tus rechazos muestren que hacen falta.
 
 **Capa 2: un juez visual.** Un modelo de visión compara cada candidata con las referencias de sí y de no, descarta las que tienen defectos y ordena las demás. Tres reglas:
 
 1. **El juez descarta y ordena, nunca aprueba.** Los modelos de visión son buenos comparando pares y malos dando una nota absoluta.
-2. **Aprende de ejemplos del propio responsable.** Sin ejemplos, tiende a dar por buenas piezas con defectos; con unos cientos de rechazos con su motivo, detecta la mayoría.
+2. **Aprende de ejemplos del propio responsable.** Sin ejemplos, tiende a dar por buenas piezas con defectos; cuantos más rechazos con su motivo tenga, más detecta. Antes de confiar en él, compara sus descartes con los del responsable durante dos o tres lotes.
 3. **Es un agente separado del que genera.** Un agente que revisa su propio trabajo tiende a aprobarlo.
 
 Al responsable le llegan 2 o 3 finalistas por pieza, no 20.
 
 ## Paso 5: aprobaciones y registro de rechazos
 
-**Puntos de aprobación.** Tres o cuatro por lote, siempre los mismos: la lista de piezas del mes, las finalistas, el corte final y la publicación. Lo que tiene costo se aprueba antes, con el costo a la vista. Nada se publica sin su visto bueno; en Claude Code eso se fuerza con un hook que bloquea la subida si no existe el archivo de aprobación del lote.
+**Puntos de aprobación.** Tres o cuatro por lote, siempre los mismos: la lista de piezas del mes, las finalistas, el corte final y la publicación. Lo que tiene costo se aprueba antes, con el costo a la vista. Nada se publica sin su visto bueno. En Claude Code un hook lo respalda: bloquea subidas, copias a carpetas de entrega y acciones de conectores cuando el archivo de aprobación del lote falta o está incompleto, e impide que Claude escriba ese archivo. Es una barrera contra errores, no un candado: el control sigue siendo el visto bueno del responsable.
 
 **Cada rechazo, con su motivo.** Una frase basta: "la letra cae sobre los árboles y no se lee". El agente la anota en `motivos.csv` y la clasifica:
 

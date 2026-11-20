@@ -1,17 +1,17 @@
 {
-  "id": "2026-12-lets-celebrate",
+  "id": "2026-12-morning-light",
   "batch": "2026-12",
   "channel": "channel-name",
-  "title": "Let's Celebrate There Is a God",
+  "title": "Morning Light",
   "emotion": "joy",
   "source": {
-    "audio": "batches/2026-12/source/Let's Celebrate There Is a God.wav",
-    "text": "batches/2026-12/source/Let's Celebrate There Is a God - lyrics.txt",
-    "background": "batches/2026-12/source/Let's Celebrate There Is a God - background.png"
+    "audio": "batches/2026-12/source/Morning Light.wav",
+    "text": "batches/2026-12/source/Morning Light - lyrics.txt",
+    "background": "batches/2026-12/source/Morning Light - background.png"
   },
   "quotes": [
-    "Let's celebrate there is a God",
-    "His love lifts us up again"
+    "Morning light is coming through",
+    "We keep on walking, me and you"
   ],
   "short_form": {
     "start_s": 62.0,
@@ -19,8 +19,8 @@
     "note": "full chorus"
   },
   "thumbnail": {
-    "text": "Celebrate",
-    "subtext": "Worship to start the day"
+    "text": "Morning Light",
+    "subtext": "A song to start the day"
   },
   "formats": ["main", "reel", "quote-1", "quote-2", "thumbnail"],
   "notes": ""
